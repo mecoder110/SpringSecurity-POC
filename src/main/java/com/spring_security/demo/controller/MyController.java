@@ -1,14 +1,28 @@
 package com.spring_security.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
+@RequestMapping("api/")
 public class MyController {
 
-    @GetMapping("api/security")
-    public String greet(){
-        return "Hello";
+    @GetMapping("/public")
+    public String forPublic(){
+        return "Hello WORLD";
+    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin")
+    public String admin(){
+        return "Hello ADMIN";
+    }
+
+    @PreAuthorize(("hasRole('USER')"))
+    @GetMapping("/user")
+    public String user(){
+        return "Hello USER";
     }
 }
