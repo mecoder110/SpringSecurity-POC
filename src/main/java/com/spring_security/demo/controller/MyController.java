@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyController {
 
     @GetMapping("/public")
-    public String forPublic(){
-        return "Hello WORLD";
+    public String forPublic() {
+        return "<H1>Hello WORLD</H1>";
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "Hello ADMIN";
     }
 
     @PreAuthorize(("hasRole('USER')"))
     @GetMapping("/user")
-    public String user(){
+    public String user() {
         return "Hello USER";
     }
+
+
 }
