@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions().disable())
                 .authorizeHttpRequests(
                         requests -> requests
-                                .requestMatchers("api/public/**", "/h2-console/**").permitAll()
+                                .requestMatchers("/api/public/**", "/h2-console/**").permitAll()
                                 .requestMatchers("/api/login").permitAll()
                                 .anyRequest().authenticated())
                 // http.formLogin(withDefaults());
